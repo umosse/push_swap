@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 11:57:45 by umosse            #+#    #+#             */
-/*   Updated: 2024/03/15 16:09:30 by umosse           ###   ########.fr       */
+/*   Updated: 2024/03/19 15:43:43 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ int	ft_calcmoves(int *taba, int *tabb, int sizea, int sizeb)
 			else
 				count = sizea - i;
 			if (target > sizeb / 2)
-				count += getindex(target, tabb);
+				count += getindex(target, tabb, sizeb);
 			else
-				count += sizeb - getindex(target, tabb);
+				count += sizeb - getindex(target, tabb, sizeb);
 			i++;
 			if (count < min)
 			{
@@ -102,6 +102,7 @@ void	ft_pushswap(int *taba, int *tabb, int i)
 	while (sizea > 3)
 	{
 		ft_topa(getmax(taba, sizea), taba, sizea);
+		ft_rightpos(taba, tabb, sizea, sizeb);
 		sizea -= ft_pb(taba, tabb, sizea, sizeb);
 		sizeb++;
 	}
@@ -129,31 +130,42 @@ void	ft_pushswap(int *taba, int *tabb, int i)
 int	main(int argc, char **argv)
 {
 	int		i;
+	int		j;
 	int		*taba;
 	int		*tabb;
 	char	**res;
 
-	i = 1;
+	i = 0;
+	j = 0;
 	taba = NULL;
 	tabb = NULL;
 	if (argc >= 2)
 	{
-		taba = ft_calloc(argc, 4);
-		tabb = ft_calloc(argc, 4);
-		if (!taba || !tabb)
-			return (0);
 		if (argc == 2)
 		{
 			res = ft_split(argv[1], ' ');
 			while (res[i])
 			{
+				i++;
+			}
+			taba = ft_calloc(i, 4);
+			tabb = ft_calloc(i, 4);
+			i = 0;
+			while (res[i])
+			{
 				taba[i] = ft_atoi(res[i]);
+				free (res[i]);
 				i++;
 			}
 			free (res);
 		}
 		else
 		{
+			taba = ft_calloc(argc, 4);
+			tabb = ft_calloc(argc, 4);
+			if (!taba || !tabb)
+				return (0);
+			i++;
 			while (i < argc)
 			{
 				taba[i - 1] = ft_atoi(argv[i]);
@@ -163,9 +175,8 @@ int	main(int argc, char **argv)
 		if (i > 1)
 		{
 			ft_pushswap(taba, tabb, i - 1);
-			i = 0;
-			while (i < argc - 1)
-				printf("%d\n", taba[i++]);
+			while (j < i - 1)
+				printf("%d\n", taba[j++]);
 		}
 		else
 		{

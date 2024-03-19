@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 13:13:43 by umosse            #+#    #+#             */
-/*   Updated: 2024/03/14 14:29:14 by umosse           ###   ########.fr       */
+/*   Updated: 2024/03/18 14:39:12 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,12 @@ int	gettoa(int b, int *taba, int size)
 	return (target);
 }
 
-int	getindex(int nb, int *tab)
+int	getindex(int nb, int *tab, int size)
 {
 	int	i;
 
 	i = 0;
-	while (tab[i] != nb)
+	while (tab[i] != nb && i < size)
 		i++;
 	return (i);
 }
