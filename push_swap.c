@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 11:57:45 by umosse            #+#    #+#             */
-/*   Updated: 2024/03/19 15:43:43 by umosse           ###   ########.fr       */
+/*   Updated: 2024/03/20 16:48:27 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	ft_calcmoves(int *taba, int *tabb, int sizea, int sizeb)
 		target = gettob(taba[i], tabb, sizea);
 		while (tabb[j])
 		{
-			if (taba[i] > sizea / 2)
+			if (getindex(taba[i], taba, sizea) > sizea / 2)
 				count = i;
 			else
 				count = sizea - i;
