@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 11:57:45 by umosse            #+#    #+#             */
-/*   Updated: 2024/03/20 16:48:27 by umosse           ###   ########.fr       */
+/*   Updated: 2024/03/21 16:46:17 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_checking(int *taba, int i)
 	return (1);
 }
 
-int	ft_calcmoves(int *taba, int *tabb, int sizea, int sizeb)
+/* int	ft_calcmoves(int *taba, int *tabb, int sizea, int sizeb)
 {
 	int	i;
 	int	j;
@@ -75,7 +75,7 @@ int	ft_calcmoves(int *taba, int *tabb, int sizea, int sizeb)
 		}
 	}
 	return (res);
-}
+} */
 
 void	ft_pushswap(int *taba, int *tabb, int i)
 {
@@ -101,7 +101,8 @@ void	ft_pushswap(int *taba, int *tabb, int i)
 	}
 	while (sizea > 3)
 	{
-		ft_topa(getmax(taba, sizea), taba, sizea);
+		ft_topa(taba[ft_bestmove(taba, tabb, sizea, sizeb)], taba, sizea);
+		printf("test\n");
 		ft_rightpos(taba, tabb, sizea, sizeb);
 		sizea -= ft_pb(taba, tabb, sizea, sizeb);
 		sizeb++;

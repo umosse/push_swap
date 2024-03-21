@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 13:13:43 by umosse            #+#    #+#             */
-/*   Updated: 2024/03/20 13:40:15 by umosse           ###   ########.fr       */
+/*   Updated: 2024/03/21 16:57:26 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	getmin(int *tab, int size)
 	return (min);
 }
 
-int	gettob(int nb, int *tabb, int size)
+/* int	gettob(int nb, int *tabb, int size)
 {
 	int	i;
 	int	target;
@@ -82,7 +82,7 @@ int	gettoa(int nb, int *taba, int size)
 	if (target == 2147483647)
 		return (getmin(taba, size));
 	return (target);
-}
+} */
 
 int	getindex(int nb, int *tab, int size)
 {

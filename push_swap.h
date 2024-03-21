@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 13:23:46 by umosse            #+#    #+#             */
-/*   Updated: 2024/03/20 13:40:26 by umosse           ###   ########.fr       */
+/*   Updated: 2024/03/21 15:23:12 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_topb(int nb, int *tabb, int sizeb);
 void	ft_size3(int *taba);
 void	ft_size2(int *taba);
 void	ft_rightpos(int *taba, int *tabb, int sizea, int sizeb);
-
+int		ft_bestmove(int *taba, int *tabb, int sizea, int sizeb);
 
 
 
