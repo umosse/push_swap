@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 13:23:46 by umosse            #+#    #+#             */
-/*   Updated: 2024/03/21 15:23:12 by umosse           ###   ########.fr       */
+/*   Updated: 2024/03/22 15:23:41 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	ft_sb(int *str);
 void	ft_ss(int *stra, int *strb);
 void	ft_ra(int *str, int size);
 void	ft_rb(int *str, int size);
-void	ft_rr(int *stra, int *strb, int size);
+void	ft_rr(int *taba, int *tabb, int sizea, int sizeb);
 void	ft_rra(int *str, int size);
 void	ft_rrb(int *str, int size);
-void	ft_rrr(int *stra, int *strb, int size);
+void	ft_rrr(int *taba, int *tabb, int sizea, int sizeb);
 int		ft_pa(int *taba, int *tabb, int sizea, int sizeb);
 int		ft_pb(int *taba, int *tabb, int sizea, int sizeb);
 int		getmax(int *tab, int size);

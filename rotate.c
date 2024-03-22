@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:57:27 by umosse            #+#    #+#             */
-/*   Updated: 2024/03/14 15:33:31 by umosse           ###   ########.fr       */
+/*   Updated: 2024/03/22 15:21:03 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,22 @@ void	ft_rb(int *str, int size)
 	write (1, "rb\n", 3);
 }
 
-void	ft_rr(int *stra, int *strb, int size)
+void	ft_rr(int *taba, int *tabb, int sizea, int sizeb)
 {
-	ft_ra(stra, size);
-	ft_rb(strb, size);
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < sizea - 1)
+	{
+		ft_swap(&(taba[i]), &(taba[i + 1]));
+		i++;
+	}
+	while (j < sizeb - 1)
+	{
+		ft_swap(&(tabb[i]), &(tabb[i + 1]));
+		i++;
+	}
 	write (1, "rr\n", 3);
 }

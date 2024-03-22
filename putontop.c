@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:59:54 by umosse            #+#    #+#             */
-/*   Updated: 2024/03/18 15:00:18 by umosse           ###   ########.fr       */
+/*   Updated: 2024/03/22 14:28:21 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	ft_topb(int nb, int *tabb, int sizeb)
 		while (tabb[0] != nb)
 		{
 			ft_rrb(tabb, sizeb);
-			printf("%d %d\n", nb, tabb[0]);
 		}
 	}
 }

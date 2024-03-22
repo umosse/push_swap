@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 13:59:21 by umosse            #+#    #+#             */
-/*   Updated: 2024/03/21 16:55:36 by umosse           ###   ########.fr       */
+/*   Updated: 2024/03/22 14:25:07 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ int	ft_bestmove(int *taba, int *tabb, int sizea, int sizeb)
 	int	best_index;
 
 	i = 0;
-	j = 0;
 	old_best = 2147483647;
 	while (i < sizea)
 	{
 		movea = ft_movesa(taba[i], taba, sizea);
+		j = 0;
 		while (j != ft_calcrightpos(taba[i], tabb, sizea, sizeb))
 		{
 			j++;
