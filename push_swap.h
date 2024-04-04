@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 13:23:46 by umosse            #+#    #+#             */
-/*   Updated: 2024/03/22 15:23:41 by umosse           ###   ########.fr       */
+/*   Updated: 2024/04/04 15:30:06 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,45 @@
 # include <string.h>
 # include <stdarg.h>
 
+typedef struct s_stack
+{
+	int	*taba;
+	int	*tabb;
+	int	sizea;
+	int	sizeb;
+	
+}	t_stack;
+
 void	ft_swap(int *a, int *b);
 void	ft_sa(int *str);
 void	ft_sb(int *str);
 void	ft_ss(int *stra, int *strb);
 void	ft_ra(int *str, int size);
 void	ft_rb(int *str, int size);
-void	ft_rr(int *taba, int *tabb, int sizea, int sizeb);
+void	ft_rr(t_stack *stack);
 void	ft_rra(int *str, int size);
 void	ft_rrb(int *str, int size);
-void	ft_rrr(int *taba, int *tabb, int sizea, int sizeb);
-int		ft_pa(int *taba, int *tabb, int sizea, int sizeb);
-int		ft_pb(int *taba, int *tabb, int sizea, int sizeb);
+void	ft_rrr(t_stack *stack);
+int		ft_pa(t_stack *stack);
+int		ft_pb(t_stack *stack);
 int		getmax(int *tab, int size);
 int		getmin(int *tab, int size);
 int		gettob(int nb, int *tabb, int size);
 int		gettoa(int nb, int *taba, int size);
 int		getindex(int nb, int *tab, int size);
-void	ft_topa(int nb, int *taba, int sizea);
-void	ft_topb(int nb, int *tabb, int sizeb);
-void	ft_size3(int *taba);
-void	ft_size2(int *taba);
-void	ft_rightpos(int *taba, int *tabb, int sizea, int sizeb);
-int		ft_bestmove(int *taba, int *tabb, int sizea, int sizeb);
-
-
+void	ft_topa(int nb, t_stack *stack);
+void	ft_topb(int nb, t_stack *stack);
+void	ft_size3(t_stack *stack);
+void	ft_size2(t_stack *stack);
+void	ft_rightpos(t_stack *stack);
+int		ft_bestmove(t_stack *stack);
+int		ft_movesa(int nb, int *taba, int sizea);
+int		ft_movesb(int nb, int *tabb, int sizeb);
+int		ft_calcrightpos(int nb, t_stack *stack);
+void	ft_domove(int best, t_stack *stack);
+int		ft_checking(t_stack *stack, int i);
+void	ft_pushswap(t_stack *stack, int i);
+void	ft_pushswap2(t_stack *stack);
+void	ft_pushingswap(int i, int j, t_stack *stack);
 
 #endif

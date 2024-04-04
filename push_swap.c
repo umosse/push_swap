@@ -6,185 +6,135 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 11:57:45 by umosse            #+#    #+#             */
-/*   Updated: 2024/03/22 14:26:56 by umosse           ###   ########.fr       */
+/*   Updated: 2024/04/04 15:35:47 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "Libft/libft.h"
 #include <stdio.h>
+#include <sys/types.h>
 
-int	ft_checking(int *taba, int i)
+void	ft_pushswap2(t_stack *stack)
 {
-	int	k;
-	int	j;
-
-	k = 0;
-	j = 1;
-	if (i <= 0)
-		return (0);
-	else
+	ft_topb(getmax(stack->tabb, stack->sizeb), stack);
+	if (stack->sizea == 3)
+		ft_size3(stack);
+	while (stack->sizeb > 0)
 	{
-		while (taba[k] && taba[j])
+		if (stack->tabb[0] < getmin(stack->taba, stack->sizea))
 		{
-			if (taba[k] < taba[j])
-			{
-				k++;
-				j++;
-			}
-			else
-				return (0);
+			ft_topa(getmin(stack->taba, stack->sizea), stack);
+			stack->sizea += ft_pa(stack);
+			stack->sizeb--;
+		}
+		else if (stack->tabb[0] < stack->taba[stack->sizea - 1])
+			ft_rra(stack->taba, stack->sizea);
+		else if (stack->sizeb > 0)
+		{
+			stack->sizea += ft_pa(stack);
+			stack->sizeb--;
 		}
 	}
-	return (1);
+	ft_topa(getmin(stack->taba, stack->sizea), stack);
 }
 
-/* int	ft_calcmoves(int *taba, int *tabb, int sizea, int sizeb)
+void	ft_pushswap(t_stack *stack, int i)
 {
-	int	i;
-	int	j;
-	int	count;
-	int	target;
-	int	min;
-	int	res;
+	stack->sizea = i;
+	stack->sizeb = 0;
+	if (stack->sizea == 2)
+		ft_size2(stack);
+	else if (ft_checking(stack, i) == 0)
+	{
+		if (stack->sizea > 3)
+		{
+			stack->sizea -= ft_pb(stack);
+			stack->sizeb++;
+		}
+		if (stack->sizea > 3)
+		{
+			stack->sizea -= ft_pb(stack);
+			stack->sizeb++;
+		}
+	}
+	while (stack->sizea > 3)
+	{
+		ft_domove(stack->taba[ft_bestmove(stack)], stack);
+		stack->sizea -= ft_pb(stack);
+		stack->sizeb++;
+	}
+	ft_pushswap2(stack);
+}
 
+int	ft_dosplit(int i, char **argv, t_stack *stack)
+{
+	char	**res;
+	
+	res = ft_split(argv[1], ' ');
+	while (res[i])
+	{
+		i++;
+	}
+	stack->taba = ft_calloc(i, 4);
+	stack->tabb = ft_calloc(i, 4);
 	i = 0;
-	j = 0;
-	count = 0;
-	min = 2147483647;
-	res = 0;
-	while (taba[i])
+	while (res[i])
 	{
-		target = gettob(taba[i], tabb, sizea);
-		while (tabb[j])
-		{
-			if (getindex(taba[i], taba, sizea) > sizea / 2)
-				count = i;
-			else
-				count = sizea - i;
-			if (target > sizeb / 2)
-				count += getindex(target, tabb, sizeb);
-			else
-				count += sizeb - getindex(target, tabb, sizeb);
-			i++;
-			if (count < min)
-			{
-				min = count;
-				res = taba[i];
-			}
-		}
+		stack->taba[i] = ft_atoi(res[i]);
+		free (res[i]);
+		i++;
 	}
-	return (res);
-} */
+	free (res);
+	return (i);
+}
 
-void	ft_pushswap(int *taba, int *tabb, int i)
+int	ft_notsplit(int i, int argc, char **argv, t_stack *stack)
 {
-	int	sizea;
-	int	sizeb;
-
-	sizea = i;
-	sizeb = 0;
-	if (sizea == 2)
-		ft_size2(taba);
-	else if (ft_checking(taba, i) == 0)
+	stack->taba = ft_calloc(argc, 4);
+	stack->tabb = ft_calloc(argc, 4);
+	if (!stack->taba || !stack->tabb)
 	{
-		if (sizea > 3)
+		if (!stack->tabb)
 		{
-			sizea -= ft_pb(taba, tabb, sizea, sizeb);
-			sizeb++;
+			free(stack->tabb);
 		}
-		if (sizea > 3)
-		{
-			sizea -= ft_pb(taba, tabb, sizea, sizeb);
-			sizeb++;
-		}
+		return (0);
 	}
-	while (sizea > 3)
+	i++;
+	while (i < argc)
 	{
-		ft_topa(taba[ft_bestmove(taba, tabb, sizea, sizeb)], taba, sizea);
-		ft_rightpos(taba, tabb, sizea, sizeb);
-		sizea -= ft_pb(taba, tabb, sizea, sizeb);
-		sizeb++;
+		stack->taba[i - 1] = ft_atoi(argv[i]);
+		i++;
 	}
-	ft_topb(getmax(tabb, sizeb), tabb, sizeb);
-	if (sizea == 3)
-		ft_size3(taba);
-	while (sizeb > 0)
-	{
-		if (tabb[0] < getmin(taba, sizea))
-		{
-			sizea += ft_pa(taba, tabb, sizea, sizeb);
-			sizeb--;
-		}
-		else if (tabb[0] < taba[sizea - 1])
-			ft_rra(taba, sizea);
-		else if (sizeb > 0)
-		{
-			sizea += ft_pa(taba, tabb, sizea, sizeb);
-			sizeb--;
-		}
-	}
-	ft_topa(getmin(taba, sizea), taba, sizea);
+	return (i);
 }
 
 int	main(int argc, char **argv)
 {
 	int		i;
 	int		j;
-	int		*taba;
-	int		*tabb;
-	char	**res;
+	t_stack	stack;
 
 	i = 0;
 	j = 0;
-	taba = NULL;
-	tabb = NULL;
+	stack.taba = NULL;
+	stack.tabb = NULL;
 	if (argc >= 2)
 	{
 		if (argc == 2)
-		{
-			res = ft_split(argv[1], ' ');
-			while (res[i])
-			{
-				i++;
-			}
-			taba = ft_calloc(i, 4);
-			tabb = ft_calloc(i, 4);
-			i = 0;
-			while (res[i])
-			{
-				taba[i] = ft_atoi(res[i]);
-				free (res[i]);
-				i++;
-			}
-			free (res);
-		}
+			i = ft_dosplit(i, argv, &stack);
 		else
-		{
-			taba = ft_calloc(argc, 4);
-			tabb = ft_calloc(argc, 4);
-			if (!taba || !tabb)
-				return (0);
-			i++;
-			while (i < argc)
-			{
-				taba[i - 1] = ft_atoi(argv[i]);
-				i++;
-			}
-		}
+			i = ft_notsplit(i, argc, argv, &stack);
 		if (i > 1)
-		{
-			ft_pushswap(taba, tabb, i - 1);
-			while (j < i - 1)
-				printf("%d\n", taba[j++]);
-		}
+			ft_pushingswap(i, j, &stack);
 		else
 		{
 			ft_putstr_fd(argv[1], 1);
 			write(1, "\n", 1);
 		}
-		free(tabb);
-		free(taba);
+		free(stack.tabb);
+		free(stack.taba);
 	}
 	return (0);
 }

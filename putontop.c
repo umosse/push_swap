@@ -6,63 +6,68 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:59:54 by umosse            #+#    #+#             */
-/*   Updated: 2024/03/22 14:28:21 by umosse           ###   ########.fr       */
+/*   Updated: 2024/04/04 12:41:43 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_topa(int nb, int *taba, int sizea)
+void	ft_topa(int nb, t_stack *stack)
 {
 	int	i;
 
 	i = 0;
-	if (getindex(nb, taba, sizea) < sizea / 2)
+	if (getindex(nb, stack->taba, stack->sizea) < stack->sizea / 2)
 	{
-		while (taba[0] != nb)
-			ft_ra(taba, sizea);
+		while (stack->taba[0] != nb)
+			ft_ra(stack->taba, stack->sizea);
 	}
 	else
 	{
-		while (taba[0] != nb)
-			ft_rra(taba, sizea);
+		while (stack->taba[0] != nb)
+			ft_rra(stack->taba, stack->sizea);
 	}
 }
 
-void	ft_topb(int nb, int *tabb, int sizeb)
+void	ft_topb(int nb, t_stack *stack)
 {
 	int	i;
 
 	i = 0;
-	if (getindex(nb, tabb, sizeb) < sizeb / 2)
+	if (getindex(nb, stack->tabb, stack->sizeb) < stack->sizeb / 2)
 	{
-		while (tabb[0] != nb)
-			ft_rb(tabb, sizeb);
+		while (stack->tabb[0] != nb)
+			ft_rb(stack->tabb, stack->sizeb);
 	}
 	else
 	{
-		while (tabb[0] != nb)
+		while (stack->tabb[0] != nb)
 		{
-			ft_rrb(tabb, sizeb);
+			ft_rrb(stack->tabb, stack->sizeb);
 		}
 	}
 }
 
-void	ft_rightpos(int *taba, int *tabb, int sizea, int sizeb)
+void	ft_rightpos(t_stack *stack)
 {
-	(void)sizea;
-	if (taba[0] > getmax(tabb, sizeb))
-		ft_topb(getmax(tabb, sizeb), tabb, sizeb);
-	else if (taba[0] < getmin(tabb, sizeb))
-		ft_topb(getmax(tabb, sizeb), tabb, sizeb);
-	else if (taba[0] > tabb[0] && taba[0] < tabb[sizeb - 1])
+	int	i;
+
+	i = 0;
+	if (stack->taba[0] > getmax(stack->tabb, stack->sizeb))
+		ft_topb(getmax(stack->tabb, stack->sizeb), stack);
+	else if (stack->taba[0] < getmin(stack->tabb, stack->sizeb))
+		ft_topb(getmax(stack->tabb, stack->sizeb), stack);
+	else if (stack->taba[0] > stack->tabb[0]
+		&& stack->taba[0] < stack->tabb[stack->sizeb - 1])
 		return ;
 	else
 	{
-		while (taba[0] > tabb[0] || taba[0] < tabb[1])
+		while ((i < stack->sizeb - 1) && (stack->taba[0] > stack->tabb[i]
+			|| stack->taba[0] < stack->tabb[i + 1]))
 		{
-			ft_rb(tabb, sizeb);
+			i++;
 		}
-		ft_rb(tabb, sizeb);
+		ft_topb(stack->tabb[i], stack);
+		ft_rb(stack->tabb, stack->sizeb);
 	}
 }

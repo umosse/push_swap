@@ -6,15 +6,15 @@
 #    By: umosse <umosse@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/25 10:15:08 by umosse            #+#    #+#              #
-#    Updated: 2024/03/21 15:24:08 by umosse           ###   ########.fr        #
+#    Updated: 2024/04/04 13:38:55 by umosse           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-SRCS_PUSH_SWAP = ps_utils.c push_swap.c push.c putontop.c reverse_rotate.c rotate.c swap.c target.c under3.c calcmoves.c
+SRCS_PUSH_SWAP = ps_utils.c push_swap.c push.c putontop.c reverse_rotate.c rotate.c swap.c target.c under3.c calcmoves.c domove.c parsing.c
 OBJS_PUSH_SWAP = $(SRCS_PUSH_SWAP:.c=.o)
-CFLAGS = -Wall -Werror -Wextra -g3
+CFLAGS = -Wall -Werror -Wextra -g3 #-O2 -fno-builtin
 RM = rm -f
 
 all: push_swap

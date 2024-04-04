@@ -6,32 +6,31 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 13:59:21 by umosse            #+#    #+#             */
-/*   Updated: 2024/03/22 14:25:07 by umosse           ###   ########.fr       */
+/*   Updated: 2024/04/04 12:55:59 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//There may be some problems here
-int	ft_calcrightpos(int nb, int *tabb, int sizea, int sizeb)
+int	ft_calcrightpos(int nb, t_stack *stack)
 {
 	int	i;
 
 	i = 0;
-	(void)sizea;
-	if (nb > getmax(tabb, sizeb))
-		return (getindex(getmax(tabb, sizeb), tabb, sizeb));
-	else if (nb < getmin(tabb, sizeb))
-		return (getindex(getmax(tabb, sizeb), tabb, sizeb));
-	else if (nb > tabb[0] && nb < tabb[sizeb - 1])
+	(void)stack->sizea;
+	if (nb > getmax(stack->tabb, stack->sizeb))
+		return (getindex(getmax(stack->tabb, stack->sizeb), stack->tabb, stack->sizeb));
+	else if (nb < getmin(stack->tabb, stack->sizeb))
+		return (getindex(getmax(stack->tabb, stack->sizeb), stack->tabb, stack->sizeb));
+	else if (nb > stack->tabb[0] && nb < stack->tabb[stack->sizeb - 1])
 		return (0);
 	else
 	{
-		while (nb > tabb[i] || nb < tabb[i + 1])
+		while (nb > stack->tabb[i] || nb < stack->tabb[i + 1])
 		{
 			i++;
 		}
-		if (nb > tabb[i])
+		if (nb > stack->tabb[i])
 			return (i);
 		else
 			return (i + 1);
@@ -40,21 +39,21 @@ int	ft_calcrightpos(int nb, int *tabb, int sizea, int sizeb)
 
 int	ft_movesa(int nb, int *taba, int sizea)
 {
-	if (getindex(nb, taba, sizea) < sizea / 2)
+	if (getindex(nb, taba, sizea) <= sizea / 2)
 		return (getindex(nb, taba, sizea));
 	else
-		return ((sizea - getindex(nb, taba, sizea) - 1) * -1);
+		return ((sizea - getindex(nb, taba, sizea)) * -1);
 }
 
 int	ft_movesb(int nb, int *tabb, int sizeb)
 {
-	if (getindex(nb, tabb, sizeb) < sizeb / 2)
+	if (getindex(nb, tabb, sizeb) <= sizeb / 2)
 		return (getindex(nb, tabb, sizeb));
 	else
-		return ((sizeb - getindex(nb, tabb, sizeb) - 1) * -1);
+		return ((sizeb - getindex(nb, tabb, sizeb)) * -1);
 }
 
-int	ft_bestmove(int *taba, int *tabb, int sizea, int sizeb)
+int	ft_bestmove(t_stack *stack)
 {
 	int	i;
 	int	j;
@@ -66,15 +65,15 @@ int	ft_bestmove(int *taba, int *tabb, int sizea, int sizeb)
 
 	i = 0;
 	old_best = 2147483647;
-	while (i < sizea)
+	while (i < stack->sizea)
 	{
-		movea = ft_movesa(taba[i], taba, sizea);
+		movea = ft_movesa(stack->taba[i], stack->taba, stack->sizea);
 		j = 0;
-		while (j != ft_calcrightpos(taba[i], tabb, sizea, sizeb))
+		while (j != ft_calcrightpos(stack->taba[i], stack))
 		{
 			j++;
 		}
-		moveb = ft_movesb(tabb[j], tabb, sizeb);
+		moveb = ft_movesb(stack->tabb[j], stack->tabb, stack->sizeb);
 		if (movea >= 0 && moveb >= 0)
 		{
 			if (movea > moveb)
@@ -99,7 +98,7 @@ int	ft_bestmove(int *taba, int *tabb, int sizea, int sizeb)
 		if (best < old_best)
 		{
 			old_best = best;
-			best_index = getindex(taba[i], taba, sizea);
+			best_index = getindex(stack->taba[i], stack->taba, stack->sizea);
 		}
 		i++;
 	}

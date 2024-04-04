@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 13:13:43 by umosse            #+#    #+#             */
-/*   Updated: 2024/03/22 14:27:25 by umosse           ###   ########.fr       */
+/*   Updated: 2024/04/02 15:17:21 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,46 +43,6 @@ int	getmin(int *tab, int size)
 	}
 	return (min);
 }
-
-/* int	gettob(int nb, int *tabb, int size)
-{
-	int	i;
-	int	target;
-
-	i = 0;
-	target = -2147483648;
-	while (tabb[i])
-	{
-		if (nb > tabb[i] && tabb[i] > target)
-		{
-			target = tabb[i];
-		}
-		i++;
-	}
-	if (target == -2147483648)
-		return (getmax(tabb, size));
-	return (target);
-}
-
-int	gettoa(int nb, int *taba, int size)
-{
-	int	i;
-	int	target;
-
-	i = 0;
-	target = 2147483647;
-	while (taba[i])
-	{
-		if (nb < taba[i] && taba[i] < target)
-		{
-			target = taba[i];
-		}
-		i++;
-	}
-	if (target == 2147483647)
-		return (getmin(taba, size));
-	return (target);
-} */
 
 int	getindex(int nb, int *tab, int size)
 {

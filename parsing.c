@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_utils.c                                         :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 13:33:42 by umosse            #+#    #+#             */
-/*   Updated: 2024/04/04 15:28:40 by umosse           ###   ########.fr       */
+/*   Created: 2024/04/04 13:36:59 by umosse            #+#    #+#             */
+/*   Updated: 2024/04/04 13:37:36 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_swap(int *a, int *b)
+int	ft_checking(t_stack *stack, int i)
 {
-	int	swap;
+	int	k;
+	int	j;
 
-	swap = *a;
-	*a = *b;
-	*b = swap;
-}
-
-void	ft_pushingswap(int i, int j, t_stack *stack)
-{
-	ft_pushswap(stack, i - 1);
-	while (j < i - 1)
-		printf("%d\n", stack->taba[j++]);
+	k = 0;
+	j = 1;
+	if (i <= 0)
+		return (0);
+	else
+	{
+		while (stack->taba[k] && stack->taba[j])
+		{
+			if (stack->taba[k] < stack->taba[j])
+			{
+				k++;
+				j++;
+			}
+			else
+				return (0);
+		}
+	}
+	return (1);
 }
