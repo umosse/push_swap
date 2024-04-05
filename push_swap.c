@@ -6,13 +6,12 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 11:57:45 by umosse            #+#    #+#             */
-/*   Updated: 2024/04/04 15:35:47 by umosse           ###   ########.fr       */
+/*   Updated: 2024/04/05 14:00:05 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "Libft/libft.h"
-#include <stdio.h>
 #include <sys/types.h>
 
 void	ft_pushswap2(t_stack *stack)
@@ -126,13 +125,8 @@ int	main(int argc, char **argv)
 			i = ft_dosplit(i, argv, &stack);
 		else
 			i = ft_notsplit(i, argc, argv, &stack);
-		if (i > 1)
-			ft_pushingswap(i, j, &stack);
-		else
-		{
-			ft_putstr_fd(argv[1], 1);
-			write(1, "\n", 1);
-		}
+		if (i > 1 && ft_checking(&stack, i) == 0)
+			ft_pushswap(&stack, i - 1);
 		free(stack.tabb);
 		free(stack.taba);
 	}

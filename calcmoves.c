@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 13:59:21 by umosse            #+#    #+#             */
-/*   Updated: 2024/04/04 12:55:59 by umosse           ###   ########.fr       */
+/*   Updated: 2024/04/05 13:23:04 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,39 @@ int	ft_movesb(int nb, int *tabb, int sizeb)
 		return ((sizeb - getindex(nb, tabb, sizeb)) * -1);
 }
 
+int	ft_totmoves(int movea, int moveb)
+{
+	int	best;
+
+	best = 0;
+	if (movea >= 0 && moveb >= 0)
+		{
+			if (movea > moveb)
+				best = movea;
+			else
+				best = moveb;
+		}
+	else if (movea < 0 && moveb < 0)
+		{
+			if (movea < moveb)
+				best = movea * -1;
+			else
+				best = moveb * -1;
+		}
+	else
+		{
+			if (movea < 0)
+				best = (movea * -1) + moveb;
+			else if (moveb < 0)
+				best = (moveb * -1) + movea;
+		}
+	return (best);
+}
+
 int	ft_bestmove(t_stack *stack)
 {
 	int	i;
 	int	j;
-	int	movea;
-	int	moveb;
-	int	best;
 	int	old_best;
 	int	best_index;
 
@@ -67,37 +93,16 @@ int	ft_bestmove(t_stack *stack)
 	old_best = 2147483647;
 	while (i < stack->sizea)
 	{
-		movea = ft_movesa(stack->taba[i], stack->taba, stack->sizea);
+		stack->movea = ft_movesa(stack->taba[i], stack->taba, stack->sizea);
 		j = 0;
 		while (j != ft_calcrightpos(stack->taba[i], stack))
 		{
 			j++;
 		}
-		moveb = ft_movesb(stack->tabb[j], stack->tabb, stack->sizeb);
-		if (movea >= 0 && moveb >= 0)
+		stack->moveb = ft_movesb(stack->tabb[j], stack->tabb, stack->sizeb);
+		if (ft_totmoves(stack->movea, stack->moveb) < old_best)
 		{
-			if (movea > moveb)
-				best = movea;
-			else
-				best = moveb;
-		}
-		else if (movea < 0 && moveb < 0)
-		{
-			if (movea < moveb)
-				best = movea * -1;
-			else
-				best = moveb * -1;
-		}
-		else
-		{
-			if (movea < 0)
-				best = (movea * -1) + moveb;
-			else if (moveb < 0)
-				best = (moveb * -1) + movea;
-		}
-		if (best < old_best)
-		{
-			old_best = best;
+			old_best = ft_totmoves(stack->movea, stack->moveb);
 			best_index = getindex(stack->taba[i], stack->taba, stack->sizea);
 		}
 		i++;

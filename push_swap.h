@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 13:23:46 by umosse            #+#    #+#             */
-/*   Updated: 2024/04/04 15:30:06 by umosse           ###   ########.fr       */
+/*   Updated: 2024/04/05 13:59:04 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define PUSH_SWAP_H
 
 # include "Libft/libft.h"
+# include "Printf/ft_printf.h"
 # include <stddef.h>
 # include <stdint.h>
 # include <stdlib.h>
@@ -29,6 +30,8 @@ typedef struct s_stack
 	int	*tabb;
 	int	sizea;
 	int	sizeb;
+	int	movea;
+	int	moveb;
 	
 }	t_stack;
 
@@ -62,6 +65,5 @@ void	ft_domove(int best, t_stack *stack);
 int		ft_checking(t_stack *stack, int i);
 void	ft_pushswap(t_stack *stack, int i);
 void	ft_pushswap2(t_stack *stack);
-void	ft_pushingswap(int i, int j, t_stack *stack);
 
 #endif
