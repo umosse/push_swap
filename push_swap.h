@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 13:23:46 by umosse            #+#    #+#             */
-/*   Updated: 2024/04/05 13:59:04 by umosse           ###   ########.fr       */
+/*   Updated: 2024/04/08 16:33:17 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <stdarg.h>
+# include <limits.h>
 
 typedef struct s_stack
 {
@@ -32,7 +33,7 @@ typedef struct s_stack
 	int	sizeb;
 	int	movea;
 	int	moveb;
-	
+
 }	t_stack;
 
 void	ft_swap(int *a, int *b);
@@ -65,5 +66,9 @@ void	ft_domove(int best, t_stack *stack);
 int		ft_checking(t_stack *stack, int i);
 void	ft_pushswap(t_stack *stack, int i);
 void	ft_pushswap2(t_stack *stack);
+int		ft_double(t_stack *stack, int i);
+int		ft_notsplit(int i, int argc, char **argv, t_stack *stack);
+int		ft_dosplit(int i, char **argv, t_stack *stack);
+int		ft_atol(char *str);
 
 #endif

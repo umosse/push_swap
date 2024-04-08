@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 13:16:21 by umosse            #+#    #+#             */
-/*   Updated: 2024/04/04 13:00:44 by umosse           ###   ########.fr       */
+/*   Updated: 2024/04/08 16:34:19 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	ft_domove(int best, t_stack *stack)
 	int	j;
 	int	movea;
 	int	moveb;
-	
+
 	j = 0;
 	movea = ft_movesa(best, stack->taba, stack->sizea);
 	while (j != ft_calcrightpos(best, stack))

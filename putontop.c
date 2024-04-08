@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:59:54 by umosse            #+#    #+#             */
-/*   Updated: 2024/04/04 12:41:43 by umosse           ###   ########.fr       */
+/*   Updated: 2024/04/08 16:33:32 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ft_rightpos(t_stack *stack)
 	else
 	{
 		while ((i < stack->sizeb - 1) && (stack->taba[0] > stack->tabb[i]
-			|| stack->taba[0] < stack->tabb[i + 1]))
+				|| stack->taba[0] < stack->tabb[i + 1]))
 		{
 			i++;
 		}

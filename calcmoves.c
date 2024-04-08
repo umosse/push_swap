@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 13:59:21 by umosse            #+#    #+#             */
-/*   Updated: 2024/04/05 13:23:04 by umosse           ###   ########.fr       */
+/*   Updated: 2024/04/08 16:35:11 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ int	ft_calcrightpos(int nb, t_stack *stack)
 	i = 0;
 	(void)stack->sizea;
 	if (nb > getmax(stack->tabb, stack->sizeb))
-		return (getindex(getmax(stack->tabb, stack->sizeb), stack->tabb, stack->sizeb));
+		return (getindex(getmax(stack->tabb, stack->sizeb),
+				stack->tabb, stack->sizeb));
 	else if (nb < getmin(stack->tabb, stack->sizeb))
-		return (getindex(getmax(stack->tabb, stack->sizeb), stack->tabb, stack->sizeb));
+		return (getindex(getmax(stack->tabb, stack->sizeb),
+				stack->tabb, stack->sizeb));
 	else if (nb > stack->tabb[0] && nb < stack->tabb[stack->sizeb - 1])
 		return (0);
 	else
@@ -59,26 +61,26 @@ int	ft_totmoves(int movea, int moveb)
 
 	best = 0;
 	if (movea >= 0 && moveb >= 0)
-		{
-			if (movea > moveb)
-				best = movea;
-			else
-				best = moveb;
-		}
+	{
+		if (movea > moveb)
+			best = movea;
+		else
+			best = moveb;
+	}
 	else if (movea < 0 && moveb < 0)
-		{
-			if (movea < moveb)
-				best = movea * -1;
-			else
-				best = moveb * -1;
-		}
+	{
+		if (movea < moveb)
+			best = movea * -1;
+		else
+			best = moveb * -1;
+	}
 	else
-		{
-			if (movea < 0)
-				best = (movea * -1) + moveb;
-			else if (moveb < 0)
-				best = (moveb * -1) + movea;
-		}
+	{
+		if (movea < 0)
+			best = (movea * -1) + moveb;
+		else if (moveb < 0)
+			best = (moveb * -1) + movea;
+	}
 	return (best);
 }
 
