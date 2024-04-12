@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 13:23:46 by umosse            #+#    #+#             */
-/*   Updated: 2024/04/08 16:33:17 by umosse           ###   ########.fr       */
+/*   Updated: 2024/04/12 17:39:12 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,13 @@
 
 typedef struct s_stack
 {
-	int	*taba;
-	int	*tabb;
-	int	sizea;
-	int	sizeb;
-	int	movea;
-	int	moveb;
+	int		*taba;
+	int		*tabb;
+	int		sizea;
+	int		sizeb;
+	int		movea;
+	int		moveb;
+	char	**res;
 
 }	t_stack;
 
@@ -70,5 +71,8 @@ int		ft_double(t_stack *stack, int i);
 int		ft_notsplit(int i, int argc, char **argv, t_stack *stack);
 int		ft_dosplit(int i, char **argv, t_stack *stack);
 int		ft_atol(char *str);
+int		ft_dosplit2(int i, t_stack *stack);
+void	ft_freeall(t_stack *stack);
+int		ft_strcmp(char *s1, char *s2);
 
 #endif

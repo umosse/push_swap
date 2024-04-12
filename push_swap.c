@@ -6,13 +6,11 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 11:57:45 by umosse            #+#    #+#             */
-/*   Updated: 2024/04/08 16:33:51 by umosse           ###   ########.fr       */
+/*   Updated: 2024/04/12 17:06:33 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "Libft/libft.h"
-#include <sys/types.h>
 
 void	ft_pushswap2(t_stack *stack)
 {
@@ -68,27 +66,30 @@ void	ft_pushswap(t_stack *stack, int i)
 
 int	ft_dosplit(int i, char **argv, t_stack *stack)
 {
-	char	**res;
+	int		j;
 
-	res = ft_split(argv[1], ' ');
-	while (res[i])
+	j = 0;
+	stack->res = ft_split(argv[1], ' ');
+	if (!stack->res)
 	{
-		i++;
+		ft_freeall(stack);
+		return (-1);
 	}
+	while (stack->res[i])
+		i++;
 	stack->taba = ft_calloc(i, 4);
 	stack->tabb = ft_calloc(i, 4);
-	i = 0;
-	while (res[i])
+	if (!stack->taba || !stack->tabb)
 	{
-		if (ft_strlen(res[i]) > 11)
-			return (0);
-		if (ft_atol(res[i]) == 0)
-			return (0);
-		stack->taba[i] = ft_atoi(res[i]);
-		free (res[i]);
-		i++;
+		ft_freeall(stack);
+		return (-1);
 	}
-	free (res);
+	i = ft_dosplit2(i, stack);
+	if (i == -1)
+		return (-1);
+	free (stack->res);
+	stack->res = NULL;
+	i++;
 	return (i);
 }
 
@@ -98,19 +99,16 @@ int	ft_notsplit(int i, int argc, char **argv, t_stack *stack)
 	stack->tabb = ft_calloc(argc, 4);
 	if (!stack->taba || !stack->tabb)
 	{
-		if (!stack->tabb)
-		{
-			free(stack->tabb);
-		}
-		return (0);
+		ft_freeall(stack);
+		return (-1);
 	}
 	i++;
 	while (i < argc)
 	{
 		if (ft_strlen(argv[i]) > 11)
-			return (0);
-		if (ft_atol(argv[i]) == 0)
-			return (0);
+			return (-1);
+		if (ft_atol(argv[i]) == -1)
+			return (-1);
 		stack->taba[i - 1] = ft_atoi(argv[i]);
 		i++;
 	}
@@ -120,25 +118,28 @@ int	ft_notsplit(int i, int argc, char **argv, t_stack *stack)
 int	main(int argc, char **argv)
 {
 	int		i;
-	int		j;
 	t_stack	stack;
 
-	i = 0;
-	j = 0;
 	stack.taba = NULL;
 	stack.tabb = NULL;
+	stack.res = NULL;
 	if (argc >= 2)
 	{
 		if (argc == 2)
-			i = ft_dosplit(i, argv, &stack);
+			i = ft_dosplit(0, argv, &stack);
 		else
-			i = ft_notsplit(i, argc, argv, &stack);
-		if (ft_double(&stack, i) == 0)
+			i = ft_notsplit(0, argc, argv, &stack);
+		if (ft_double(&stack, i - 1) == -1 && i != -1)
+		{
+			write (2, "Error\n", 6);
+			ft_freeall(&stack);
 			return (0);
+		}
 		if (i > 1 && ft_checking(&stack, i) == 0)
 			ft_pushswap(&stack, i - 1);
-		free(stack.tabb);
-		free(stack.taba);
+		if (i == -1)
+			write (2, "Error\n", 6);
+		ft_freeall(&stack);
 	}
 	return (0);
 }

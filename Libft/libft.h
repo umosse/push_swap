@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:49:17 by umosse            #+#    #+#             */
-/*   Updated: 2024/02/28 11:51:48 by umosse           ###   ########.fr       */
+/*   Updated: 2024/04/09 17:29:15 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,11 @@ t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 t_list	*ft_lstnew(void *content);
 int		ft_lstsize(t_list *lst);
+
+char	*ft_strjoin2(char *s1, char *s2);
+char	*ft_readfile(int fd, char *line);
+char	*ft_cutline(char *line);
+char	*ft_linecomp(char *line);
+char	*get_next_line(int fd);
 
 #endif

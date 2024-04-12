@@ -1,44 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_utils.c                                         :+:      :+:    :+:   */
+/*   bonus_swap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 13:33:42 by umosse            #+#    #+#             */
-/*   Updated: 2024/04/11 14:44:05 by umosse           ###   ########.fr       */
+/*   Created: 2024/04/09 15:43:20 by umosse            #+#    #+#             */
+/*   Updated: 2024/04/09 15:51:43 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "bonus_checker.h"
 
-void	ft_swap(int *a, int *b)
+void	ft_sa(int *str)
 {
-	int	swap;
-
-	swap = *a;
-	*a = *b;
-	*b = swap;
-}
-
-int	ft_strcmp(char *s1, char *s2)
-{
-	unsigned int	i;
+	int	i;
 
 	i = 0;
-	if (s1 == NULL || s2 == NULL)
-		return (-1);
-	while ((s1[i] != '0' && s2[i] != 0) && s1[i] == s2[i])
-	{
-		s1++;
-		s2++;
-	}
-	if (s1[i] == s2[i])
-	{
-		return (0);
-	}
-	else
-	{
-		return (s1[i] - s2[i]);
-	}
+	ft_swap(&(str[i]), &(str[i + 1]));
+}
+
+void	ft_sb(int *str)
+{
+	int	i;
+
+	i = 0;
+	ft_swap(&(str[i]), &(str[i + 1]));
+}
+
+void	ft_ss(int *stra, int *strb)
+{
+	ft_sa(stra);
+	ft_sb(strb);
 }
