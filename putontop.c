@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:59:54 by umosse            #+#    #+#             */
-/*   Updated: 2024/04/08 16:33:32 by umosse           ###   ########.fr       */
+/*   Updated: 2024/04/15 12:51:53 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	ft_topa(int nb, t_stack *stack)
 {
-	int	i;
-
-	i = 0;
 	if (getindex(nb, stack->taba, stack->sizea) < stack->sizea / 2)
 	{
 		while (stack->taba[0] != nb)
@@ -31,9 +28,6 @@ void	ft_topa(int nb, t_stack *stack)
 
 void	ft_topb(int nb, t_stack *stack)
 {
-	int	i;
-
-	i = 0;
 	if (getindex(nb, stack->tabb, stack->sizeb) < stack->sizeb / 2)
 	{
 		while (stack->tabb[0] != nb)

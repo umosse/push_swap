@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:45:26 by umosse            #+#    #+#             */
-/*   Updated: 2024/04/11 14:40:56 by umosse           ###   ########.fr       */
+/*   Updated: 2024/04/15 15:51:40 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ int	ft_pa(t_bonus *bonus)
 {
 	int	j;
 
+	if (bonus->sizeb == 0)
+	{
+		write(2, "Nothing to push\n", 16);
+		return (0);
+	}
 	j = bonus->sizea - 1;
 	while (j >= 0)
 	{
@@ -38,6 +43,11 @@ int	ft_pb(t_bonus *bonus)
 {
 	int	j;
 
+	if (bonus->sizea == 0)
+	{
+		write(2, "Nothing to push\n", 16);
+		return (0);
+	}
 	j = bonus->sizeb - 1;
 	while (j >= 0)
 	{

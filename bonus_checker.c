@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:02:49 by umosse            #+#    #+#             */
-/*   Updated: 2024/04/12 17:07:08 by umosse           ###   ########.fr       */
+/*   Updated: 2024/04/15 16:14:17 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int	ft_dosplit2(int i, t_bonus *bonus)
 	i = 0;
 	while (bonus->res[i])
 	{
-		if (ft_strlen(bonus->res[i]) > 11)
-			return (-1);
 		if (ft_atol(bonus->res[i]) == -1)
 			return (-1);
 		bonus->taba[i] = ft_atoi(bonus->res[i]);
@@ -31,9 +29,6 @@ int	ft_dosplit2(int i, t_bonus *bonus)
 
 int	ft_dosplit(int i, char **argv, t_bonus *bonus)
 {
-	int		j;
-
-	j = 0;
 	bonus->res = ft_split(argv[1], ' ');
 	if (!bonus->res)
 	{
@@ -43,7 +38,9 @@ int	ft_dosplit(int i, char **argv, t_bonus *bonus)
 	while (bonus->res[i])
 		i++;
 	bonus->taba = ft_calloc(i, 4);
+	bonus->sizea = i;
 	bonus->tabb = ft_calloc(i, 4);
+	bonus->sizeb = 0;
 	if (!bonus->taba || !bonus->tabb)
 	{
 		ft_freeall(bonus);
@@ -60,6 +57,8 @@ int	ft_dosplit(int i, char **argv, t_bonus *bonus)
 
 int	ft_notsplit(int i, int argc, char **argv, t_bonus *bonus)
 {
+	bonus->sizea = argc - 1;
+	bonus->sizeb = 0;
 	bonus->taba = ft_calloc(argc, 4);
 	bonus->tabb = ft_calloc(argc, 4);
 	if (!bonus->taba || !bonus->tabb)
@@ -70,8 +69,6 @@ int	ft_notsplit(int i, int argc, char **argv, t_bonus *bonus)
 	i++;
 	while (i < argc)
 	{
-		if (ft_strlen(argv[i]) > 11)
-			return (-1);
 		if (ft_atol(argv[i]) == -1)
 			return (-1);
 		bonus->taba[i - 1] = ft_atoi(argv[i]);
