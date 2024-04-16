@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:36:59 by umosse            #+#    #+#             */
-/*   Updated: 2024/04/15 15:46:49 by umosse           ###   ########.fr       */
+/*   Updated: 2024/04/16 15:20:25 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,15 @@ int	ft_dosplit2(int i, t_stack *stack)
 	while (stack->res[i])
 	{
 		if (ft_atol(stack->res[i]) == -1)
+		{
+			while (stack->res[i])
+			{
+				free (stack->res[i]);
+				stack->res[i] = NULL;
+				i++;
+			}
 			return (-1);
+		}
 		stack->taba[i] = ft_atoi(stack->res[i]);
 		free (stack->res[i]);
 		stack->res[i] = NULL;

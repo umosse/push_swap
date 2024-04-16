@@ -6,19 +6,27 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:02:49 by umosse            #+#    #+#             */
-/*   Updated: 2024/04/15 16:14:17 by umosse           ###   ########.fr       */
+/*   Updated: 2024/04/16 15:21:30 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bonus_checker.h"
 
-int	ft_dosplit2(int i, t_bonus *bonus)
+int	ft_dosplit3(int i, t_bonus *bonus)
 {
 	i = 0;
 	while (bonus->res[i])
 	{
 		if (ft_atol(bonus->res[i]) == -1)
+		{
+			while (bonus->res[i])
+			{
+				free (bonus->res[i]);
+				bonus->res[i] = NULL;
+				i++;
+			}
 			return (-1);
+		}
 		bonus->taba[i] = ft_atoi(bonus->res[i]);
 		free (bonus->res[i]);
 		bonus->res[i] = NULL;
@@ -46,11 +54,11 @@ int	ft_dosplit(int i, char **argv, t_bonus *bonus)
 		ft_freeall(bonus);
 		return (-1);
 	}
-	i = ft_dosplit2(i, bonus);
-	if (i == -1)
-		return (-1);
+	i = ft_dosplit3(i, bonus);
 	free (bonus->res);
 	bonus->res = NULL;
+	if (i == -1)
+		return (-1);
 	i++;
 	return (i);
 }
@@ -98,7 +106,9 @@ void	ft_checker(t_bonus *bonus, int i)
 		free (str);
 	}
 	free (str);
-	if (ft_checking2(bonus, i) == 1)
+	if (bonus->sizeb > 0)
+		write(1, "KO\n", 3);
+	else if (ft_checking2(bonus, i) == 1)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
